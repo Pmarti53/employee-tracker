@@ -89,22 +89,48 @@ function answer({ WhatDo }) {
 };
 
 function viewDepts() {
-    db.query(`SELECT * FROM Department`, (err, res)=>{
+    db.query(`SELECT * FROM Department`, (err, res) => {
+        if (err) {
+            throw err;
+        }
         console.log('Departments');
-        
+        console.table(res)
+        mainPrompt();
     });
 };
 
 function viewRoles() {
-    db.query(`SELECT * FROM Role`, (err, res)=>{
+    db.query(`SELECT * FROM Role`, (err, res) => {
+        if (err) {
+            throw err;
+        }
         console.log('Roles');
+        console.table(res)
+        mainPrompt();
     });
 };
 
 function viewEmpls() {
-    db.query(`SELECT * FROM Employee`, (err, res)=>{
+    db.query(`SELECT * FROM Employee`, (err, res) => {
+        if (err) {
+            throw err;
+        }
         console.log('Employees');
+        console.table(res)
+        mainPrompt();
     });
+};
+
+function addDepts() {
+    inquirer.prompt([
+    {
+        name: "Dept_Name",
+        type: "input",
+        message: "What is the Dept. Name?"
+    }
+    ])
+    console.log("dept added")
+    mainPrompt();
 }
 
 
