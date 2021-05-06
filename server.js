@@ -21,37 +21,93 @@ const db = mysql.createConnection(
 function mainPrompt() {
     inquirer.prompt({
         name: "WhatDo",
-        type: "rawlist",
-        Message: "What would you like to do?",
+        type: "list",
+        message: "What would you like to do?",
+
         choices: [
-            {
-                name: "Add Department",
-                value: "Add_Department"
-            },
-            {
-                name: "Add Title",
-                value: "Add_Title"
-            },
-            {
-                name: "Add Employee",
-                value: "Add_Employee"
-            },
             {
                 name: "View All Departments",
                 value: "View_Departments"
             },
             {
-                name: "View All Titles",
-                value: "View_Titles"
+                name: "View All Roles",
+                value: "View_Roles"
             },
             {
                 name: "View All Employees",
                 value: "View_Employees"
+            },
+            {
+                name: "Add Department",
+                value: "Add_Department"
+            },
+            {
+                name: "Add Role",
+                value: "Add_Role"
+            },
+            {
+                name: "Add Employee",
+                value: "Add_Employee"
             }
         ]
-    })
+    }).then(answer);
 
+}
+
+function answer({ WhatDo }) {
+    switch (WhatDo) {
+        case "View_Departments":
+            viewDepts();
+            break;
+
+        case "View_Roles":
+            viewRoles();
+            break;
+
+        case "View_Employees":
+            viewEmpls();
+            break;
+
+        case "Add_Department":
+            addDepts();
+            break;
+
+        case "Add_Role":
+            addRole();
+            break;
+
+        case "Add_Employee":
+            addEmpl();
+            break;
+
+        case "Exit":
+        default:
+            console.log('Bye');
+            db.end();
+
+    }
 };
+
+function viewDepts() {
+    db.query(`SELECT * FROM Department`, (err, res)=>{
+        console.log('Departments');
+        
+    });
+};
+
+function viewRoles() {
+    db.query(`SELECT * FROM Role`, (err, res)=>{
+        console.log('Roles');
+    });
+};
+
+function viewEmpls() {
+    db.query(`SELECT * FROM Employee`, (err, res)=>{
+        console.log('Employees');
+    });
+}
+
+
 
 
 
