@@ -123,15 +123,132 @@ function viewEmpls() {
 
 function addDepts() {
     inquirer.prompt([
-    {
-        name: "Dept_Name",
-        type: "input",
-        message: "What is the Dept. Name?"
-    }
-    ])
-    console.log("dept added")
-    mainPrompt();
+        {
+            name: "Dept_Name",
+            type: "input",
+            message: "What is the Dept. Name?"
+        },
+        {
+            name: "Dept_id",
+            type: "input",
+            message: "What is the Dept id?"
+        },
+
+
+    ]).then(({ Dept_Name, Dept_id }) => {
+        const sql = `INSERT INTO Department (id, dept_name) VALUES (?,?)`;
+        const params = [Dept_Name, Dept_id];
+        // console.log(dept_name);
+        // console.log(value)
+
+        db.query(sql, params, (err, result) => {
+            if (err) {
+                return;
+            };
+            console.log(result)
+        });
+        console.log("Department added!")
+        mainPrompt();
+
+    });
 }
+
+// ADDING ROLES
+function addRole() {
+    inquirer.prompt([
+        {
+            name: "Role_id",
+            type: "input",
+            message: "What is the title id?"
+        },
+        {
+            name: "Title_Name",
+            type: "input",
+            message: "What is this employee's title?"
+        },
+        {
+            name: "Emp_Salary",
+            type: "input",
+            message: "What is the Salary?"
+        },
+        {
+            name: "Dept_id",
+            type: "input",
+            message: "What is the Dept id?"
+        },
+
+
+    ]).then(({ Role_id, Title_Name, Emp_Salary, Dept_id }) => {
+        const sql = `INSERT INTO Role (id, title, salary, department_id) VALUES (?,?,?,?)`;
+        const params = [Role_id, Title_Name, Emp_Salary, Dept_id];
+        // console.log(dept_name);
+        // console.log(value)
+
+        db.query(sql, params, (err, result) => {
+            if (err) {
+                return;
+            };
+            console.log(result)
+        });
+        console.log("Role added!")
+        mainPrompt();
+
+
+
+    });
+}
+
+//ADDING EMPLOYEE
+function addEmpl() {
+    inquirer.prompt([
+        {
+            name: "Employee_id",
+            type: "input",
+            message: "What is the employee's id?"
+        },
+        {
+            name: "First_Name",
+            type: "input",
+            message: "What is this employee's first name?"
+        },
+        {
+            name: "Last_Name",
+            type: "input",
+            message: "What is this employee's last name?"
+        },
+        {
+            name: "Role_id",
+            type: "input",
+            message: "What is the title id?"
+        },
+        {
+            name: "Dept_id",
+            type: "input",
+            message: "What is the Dept id?"
+        }
+        
+
+
+    ]).then(({ Employee_id, First_Name, Last_Name, Role_id, Dept_id }) => {
+        const sql = `INSERT INTO Employee (id, first_name, last_name, role_id, manager_id) VALUES (?,?,?,?)`;
+        const params = [Employee_id, First_Name, Last_Name, Role_id, Dept_id];
+        // console.log(dept_name);
+        // console.log(value)
+
+        db.query(sql, params, (err, result) => {
+            if (err) {
+                return;
+            };
+            console.log(result)
+        });
+        console.log("Employee added!")
+        mainPrompt();
+
+
+
+    });
+}
+
 
 
 
