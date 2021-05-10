@@ -1,3 +1,4 @@
+![Screen Shot 2021-05-09 at 9 08 00 PM](https://user-images.githubusercontent.com/77707292/117597154-a458bb80-b10a-11eb-8e3d-de34ceb942d0.png)
 # Employee Tracker
 
 ## Description
