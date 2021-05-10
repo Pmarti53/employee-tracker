@@ -134,11 +134,10 @@ function addDepts() {
             message: "What is the Dept id?"
         },
 
-
-    ]).then(({ Dept_Name, Dept_id }) => {
+        
+    ]).then(({ Dept_id, Dept_Name  }) => {
         const sql = `INSERT INTO Department (id, dept_name) VALUES (?,?)`;
-        const params = [Dept_Name, Dept_id];
-        // console.log(dept_name);
+        const params = [Dept_id, Dept_Name];
         // console.log(value)
 
         db.query(sql, params, (err, result) => {
@@ -151,7 +150,7 @@ function addDepts() {
         mainPrompt();
 
     });
-}
+};
 
 // ADDING ROLES
 function addRole() {
@@ -181,7 +180,6 @@ function addRole() {
     ]).then(({ Role_id, Title_Name, Emp_Salary, Dept_id }) => {
         const sql = `INSERT INTO Role (id, title, salary, department_id) VALUES (?,?,?,?)`;
         const params = [Role_id, Title_Name, Emp_Salary, Dept_id];
-        // console.log(dept_name);
         // console.log(value)
 
         db.query(sql, params, (err, result) => {
@@ -196,7 +194,7 @@ function addRole() {
 
 
     });
-}
+};
 
 //ADDING EMPLOYEE
 function addEmpl() {
